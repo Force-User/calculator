@@ -1,0 +1,29 @@
+.calculator-buttons__button {
+  padding: 15px 20px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  transition: 0.5s;
+  &:hover {
+    background-color: rgb(16, 156, 216);
+    color: #fff;
+  }
+}
+
+.operation-button {
+  background-color: rgb(243, 45, 45);
+  color: #fff;
+  &:hover {
+    background-color: rgb(27, 68, 86);
+  }
+}
+.clear-button {
+  background-color: rgb(255, 166, 0);
+  color: #fff;
+  &:hover {
+    background-color: rgb(11, 191, 104);
+  }
+}
+.ce-button,
+.equally-button {
+  grid-column: span 2;
+}
