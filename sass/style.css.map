@@ -1,0 +1,14 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "style.scss",
+        "base/_base.scss",
+        "layout/_area.scss",
+        "layout/_wrapper.scss",
+        "components/_screen.scss",
+        "components/_button.scss"
+    ],
+    "names": [],
+    "file": "style.css"
+}
