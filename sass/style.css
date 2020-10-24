@@ -72,7 +72,7 @@
 
 .calculator-screen {
   background-color: #ececec;
-  width: 100%;
+  width: 87%;
   height: 70px;
   border-radius: 5px;
   display: -webkit-box;
@@ -89,11 +89,12 @@
 }
 
 .calculator-screen input {
+  font-size: 20px;
   background-color: inherit;
   font-family: 'Audiowide', cursive;
-  width: 80%;
+  width: 90%;
   text-align: end;
-  color: #37ff00;
+  color: #009dff;
 }
 
 .calculator-buttons__button {
