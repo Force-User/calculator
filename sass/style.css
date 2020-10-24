@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -20,8 +21,8 @@
       -ms-flex-pack: center;
           justify-content: center;
   height: 100vh;
-  background: -webkit-gradient(linear, left top, right top, from(#aea4e3), to(#d3ffe8));
-  background: linear-gradient(90deg, #aea4e3, #d3ffe8);
+  background: -webkit-gradient(linear, left top, right top, from(#8379b5), to(#d3ffe8));
+  background: linear-gradient(90deg, #8379b5, #d3ffe8);
 }
 
 .wrapper {
@@ -70,7 +71,7 @@
 }
 
 .calculator-screen {
-  background-color: #fff;
+  background-color: #ececec;
   width: 100%;
   height: 70px;
   border-radius: 5px;
@@ -84,14 +85,15 @@
       -ms-flex-pack: center;
           justify-content: center;
   margin-bottom: 5px;
-  border: 1px solid lightgray;
-  cursor: text;
+  border: 1px solid black;
 }
 
 .calculator-screen input {
-  font-size: 20px;
+  background-color: inherit;
+  font-family: 'Audiowide', cursive;
   width: 80%;
   text-align: end;
+  color: #37ff00;
 }
 
 .calculator-buttons__button {
@@ -100,6 +102,9 @@
   border-radius: 5px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  position: relative;
+  font-size: 20px;
+  overflow: hidden;
 }
 
 .calculator-buttons__button:hover {
@@ -108,12 +113,12 @@
 }
 
 .operation-button {
-  background-color: #f32d2d;
+  background-color: red;
   color: #fff;
 }
 
 .operation-button:hover {
-  background-color: #1b4456;
+  background-color: #e282f8;
 }
 
 .clear-button {
@@ -128,5 +133,33 @@
 .ce-button,
 .equally-button {
   grid-column: span 2;
+}
+
+.press-effect {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  -webkit-animation: click-effect .3s ease-out;
+          animation: click-effect .3s ease-out;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+@-webkit-keyframes click-effect {
+  to {
+    background-color: #fff;
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes click-effect {
+  to {
+    background-color: #fff;
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    opacity: 0;
+  }
 }
 /*# sourceMappingURL=style.css.map */
