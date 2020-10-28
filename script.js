@@ -3,17 +3,24 @@ const calculator = document.querySelector(".calculator");
 let memoryCurrentNumber = 0;
 let memoryLastNumber = false;
 let memoryOperator = "";
+
+
 calculator.addEventListener("click", (e) => {
   const currentElement = e.target;
 
   if (currentElement.classList.contains("calculator-buttons__button")) {
     pressEffect(e);
+
     if (currentElement.classList.contains("number-button")) {
+      
       if (memoryLastNumber) {
         setScreenValue(currentElement.textContent);
         memoryLastNumber = false;
       } else {
+
         if (getScreenValue() === "0") {
+
+          console.log(+getScreenValue());
           setScreenValue(currentElement.textContent);
         } else {
           outputNumber(currentElement.textContent);
@@ -21,12 +28,17 @@ calculator.addEventListener("click", (e) => {
       }
     }
 
+    if (currentElement.classList.contains("point")) {
+      checkPoint(currentElement.textContent);
+    }
+
     if (currentElement.classList.contains("ce-button")) {
       clearAllVlaue();
+      
     }
 
     if (currentElement.classList.contains("c-button")) {
-      clearLastNumber();
+      clearLastInputNumber();
     }
 
     if (currentElement.classList.contains("operation-button")) {
@@ -56,7 +68,7 @@ function pressEffect(e) {
 
 function outputNumber(number = 0) {
   const screen = document.getElementById("inp-screen");
-  screen.value = +(screen.value + number);
+  screen.value = screen.value + number;
 }
 
 function mathOperation(operation) {
@@ -67,23 +79,23 @@ function mathOperation(operation) {
 
     switch (memoryOperator) {
       case "+":
-        memoryCurrentNumber += getScreenValue();
+        memoryCurrentNumber += +getScreenValue();
         break;
 
       case "-":
-        memoryCurrentNumber -= getScreenValue();
+        memoryCurrentNumber -= +getScreenValue();
         break;
 
       case "*":
-        memoryCurrentNumber *= getScreenValue();
+        memoryCurrentNumber *= +getScreenValue();
         break;
 
       case "/":
-        memoryCurrentNumber /= getScreenValue();
+        memoryCurrentNumber /= +getScreenValue();
         break;
 
       default:
-        memoryCurrentNumber = getScreenValue();
+        memoryCurrentNumber = +getScreenValue();
         break;
     }
     setScreenValue(memoryCurrentNumber);
@@ -97,19 +109,27 @@ function clearScreen() {
 }
 
 function getScreenValue() {
-  return +document.getElementById("inp-screen").value;
+  return document.getElementById("inp-screen").value;
 }
 function setScreenValue(value) {
   document.getElementById("inp-screen").value = value;
-  console.log(value);
+ 
 }
 function clearAllVlaue() {
-    clearScreen();
-    memoryLastNumber = false;
-    memoryOperator = "";
-    memoryCurrentNumber = 0;
+  clearScreen();
+  memoryLastNumber = false;
+  memoryOperator = "";
+  memoryCurrentNumber = 0;
 }
-function clearLastNumber() {
-    const string = getScreenValue().toString();
-    setScreenValue(string.substring(0,string.length-1));
+function clearLastInputNumber() {
+  const string = getScreenValue().toString();
+  setScreenValue(string.substring(0, string.length - 1));
+}
+
+function checkPoint(elem) {
+  const screen = getScreenValue();
+  if (screen !== "" && !screen.includes(".")) {
+    outputNumber(elem);
+  } else {
+  }
 }
