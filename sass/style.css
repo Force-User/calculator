@@ -21,8 +21,9 @@
       -ms-flex-pack: center;
           justify-content: center;
   height: 100vh;
-  background: -webkit-gradient(linear, left top, right top, from(#8379b5), to(#d3ffe8));
-  background: linear-gradient(90deg, #8379b5, #d3ffe8);
+  background: #00F260;
+  background: -webkit-gradient(linear, left top, right top, from(#0575E6), to(#00F260));
+  background: linear-gradient(to right, #0575E6, #00F260);
 }
 
 .wrapper {
@@ -53,7 +54,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 40px 40px;
-  background-color: #fff;
+  background: #fff;
   border: 1px solid #aca3a3;
   border-radius: 60px 10px 30px;
   -webkit-box-shadow: 10px 10px 5px 2px;
@@ -97,7 +98,7 @@
 
 .calculator-screen {
   background-color: #ececec;
-  width: 90%;
+  width: 100%;
   height: 70px;
   border-radius: 5px;
   display: -webkit-box;
@@ -109,8 +110,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-bottom: 5px;
-  border: 1px solid black;
+  margin-bottom: 15px;
+  border: 1px solid #000;
 }
 
 .calculator-screen input {
@@ -119,24 +120,21 @@
   font-family: 'Audiowide', cursive;
   width: 90%;
   text-align: end;
-  color: #009dff;
-}
-
-@media (max-width: 370px) {
-  .calculator-screen {
-    width: 100%;
-  }
+  color: #109cd8;
 }
 
 .calculator-buttons__button {
-  padding: 15px 20px;
-  border: 1px solid lightgray;
+  padding: 25px 30px;
+  border: 1px solid #aca3a3;
   border-radius: 5px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   position: relative;
   font-size: 20px;
   overflow: hidden;
+  text-align: center;
+  -webkit-box-shadow: 0 0 5px 1px #000;
+          box-shadow: 0 0 5px 1px #000;
 }
 
 .calculator-buttons__button:hover {
@@ -145,7 +143,7 @@
 }
 
 .operation-button {
-  background-color: red;
+  background-color: #ff0000;
   color: #fff;
 }
 
@@ -167,14 +165,19 @@
   grid-column: span 2;
 }
 
-.press-effect {
+.click-effect {
   position: absolute;
-  background-color: white;
+  background-color: #fff;
   border-radius: 50%;
   -webkit-animation: click-effect .3s ease-out;
           animation: click-effect .3s ease-out;
   -webkit-transform: scale(0);
           transform: scale(0);
+}
+
+.press-effect {
+  -webkit-animation: press-effect .3s ease;
+          animation: press-effect .3s ease;
 }
 
 @-webkit-keyframes click-effect {
@@ -192,6 +195,28 @@
     -webkit-transform: scale(2);
             transform: scale(2);
     opacity: 0;
+  }
+}
+
+@-webkit-keyframes press-effect {
+  from {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  to {
+    -webkit-box-shadow: 0 0 5px 1px #000;
+            box-shadow: 0 0 5px 1px #000;
+  }
+}
+
+@keyframes press-effect {
+  from {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  to {
+    -webkit-box-shadow: 0 0 5px 1px #000;
+            box-shadow: 0 0 5px 1px #000;
   }
 }
 /*# sourceMappingURL=style.css.map */

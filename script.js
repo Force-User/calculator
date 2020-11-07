@@ -1,73 +1,52 @@
 "use strict";
-const calculator = document.querySelector(".calculator");
+const calculatorButtons = document.querySelector(".calculator-buttons");
+const screen = document.getElementById("inp-screen");
 let memoryCurrentNumber = 0;
 let memoryLastNumber = false;
 let memoryOperator = "";
 
+calculatorButtons.addEventListener("click", (e) => {
+  const selectedElement = e.target.closest("button");
 
-calculator.addEventListener("click", (e) => {
-  const currentElement = e.target;
+  selectedElement.classList.add("press-effect");
 
-  if (currentElement.classList.contains("calculator-buttons__button")) {
+  if (selectedElement.classList.contains("calculator-buttons__button")) {
     pressEffect(e);
 
-    if (currentElement.classList.contains("number-button")) {
-      
+    if (selectedElement.classList.contains("number-button")) {
       if (memoryLastNumber) {
-        setScreenValue(currentElement.textContent);
+        setScreenValue(selectedElement.textContent);
         memoryLastNumber = false;
+      } else if (getScreenValue() === "0") {
+        setScreenValue(selectedElement.textContent);
       } else {
-
-        if (getScreenValue() === "0") {
-
-          console.log(+getScreenValue());
-          setScreenValue(currentElement.textContent);
-        } else {
-          outputNumber(currentElement.textContent);
-        }
+        outputNumber(selectedElement.textContent);
       }
+      return;
     }
 
-    if (currentElement.classList.contains("point")) {
-      checkPoint(currentElement.textContent);
+    if (selectedElement.classList.contains("point")) {
+      checkPoint(selectedElement.textContent);
+      return;
     }
 
-    if (currentElement.classList.contains("ce-button")) {
+    if (selectedElement.classList.contains("ce-button")) {
       clearAllVlaue();
-      
+      return;
     }
 
-    if (currentElement.classList.contains("c-button")) {
+    if (selectedElement.classList.contains("c-button")) {
       clearLastInputNumber();
+      return;
     }
 
-    if (currentElement.classList.contains("operation-button")) {
-      mathOperation(currentElement.textContent);
+    if (selectedElement.classList.contains("operation-button")) {
+      mathOperation(selectedElement.textContent);
     }
   }
 });
 
-function pressEffect(e) {
-  const lastClickBlock = document.querySelector(".press-effect");
-
-  if (lastClickBlock) {
-    lastClickBlock.remove();
-  }
-
-  const clickBlock = document.createElement("div");
-  const maxValue = Math.max(e.target.clientWidth, e.target.clientHeight);
-  const elemSizeOrClient = e.target.getBoundingClientRect();
-
-  clickBlock.classList.add("press-effect");
-  e.target.append(clickBlock);
-  clickBlock.style.width = clickBlock.style.height = maxValue + "px";
-  clickBlock.style.top = e.clientY - elemSizeOrClient.top - maxValue / 2 + "px";
-  clickBlock.style.left =
-    e.clientX - elemSizeOrClient.left - maxValue / 2 + "px";
-}
-
 function outputNumber(number = 0) {
-  const screen = document.getElementById("inp-screen");
   screen.value = screen.value + number;
 }
 
@@ -104,16 +83,14 @@ function mathOperation(operation) {
 }
 
 function clearScreen() {
-  const screen = document.getElementById("inp-screen");
   screen.value = "";
 }
 
 function getScreenValue() {
-  return document.getElementById("inp-screen").value;
+  return screen.value;
 }
 function setScreenValue(value) {
-  document.getElementById("inp-screen").value = value;
- 
+  screen.value = value;
 }
 function clearAllVlaue() {
   clearScreen();
@@ -122,14 +99,40 @@ function clearAllVlaue() {
   memoryCurrentNumber = 0;
 }
 function clearLastInputNumber() {
-  const string = getScreenValue().toString();
-  setScreenValue(string.substring(0, string.length - 1));
+  const screenValue = getScreenValue().toString();
+  setScreenValue(screenValue.substring(0, screenValue.length - 1));
 }
 
 function checkPoint(elem) {
-  const screen = getScreenValue();
-  if (screen !== "" && !screen.includes(".")) {
+  const screenValue = getScreenValue();
+  if (screenValue !== "" && !screenValue.includes(".")) {
     outputNumber(elem);
-  } else {
   }
+}
+
+function pressEffect(e) {
+  const lastClickBlock = calculatorButtons.querySelector(".click-effect");
+
+  if (lastClickBlock) {
+    lastClickBlock.remove();
+  }
+
+  const clickBlock = document.createElement("div");
+  const maxValue = Math.max(e.target.clientWidth, e.target.clientHeight);
+  const elemSizeOrClient = e.target.getBoundingClientRect();
+
+  clickBlock.classList.add("click-effect");
+  e.target.append(clickBlock);
+  clickBlock.style.width = clickBlock.style.height = maxValue + "px";
+  clickBlock.style.top = e.clientY - elemSizeOrClient.top - maxValue / 2 + "px";
+  clickBlock.style.left =
+    e.clientX - elemSizeOrClient.left - maxValue / 2 + "px";
+  clickEffect(e.target);
+}
+
+function clickEffect(button) {
+  button.classList.add("press-effect");
+  setTimeout(() => {
+    button.classList.remove("press-effect");
+  }, 300);
 }
