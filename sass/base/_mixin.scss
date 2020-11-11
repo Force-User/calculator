@@ -1,0 +1,10 @@
+@mixin flex($vertical: center, $horizon: center) {
+  display: flex;
+  align-items: $vertical;
+  justify-content: $horizon;
+}
+@mixin grid($rows: repeat(4, 1fr), $columns: repeat((5, 1fr))) {
+  display: grid;
+  grid-template-rows: $rows;
+  grid-template-columns: $rows;
+}

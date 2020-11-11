@@ -1,0 +1,17 @@
+$color-right-gradient: #0575e6;
+$color-left-gradient: #00f260;
+.area {
+  @include flex();
+  height: 100vh;
+  background: $color-left-gradient;
+  background: -webkit-linear-gradient(
+    to right,
+    $color-right-gradient,
+    $color-left-gradient
+  );
+  background: linear-gradient(
+    to right,
+    $color-right-gradient,
+    $color-left-gradient
+  );
+}
