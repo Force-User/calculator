@@ -1,7 +1,4 @@
 .calculator-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  @include grid();
   grid-gap: 15px 10px;
-  
 }

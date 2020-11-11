@@ -11,7 +11,7 @@ calculatorButtons.addEventListener("click", (e) => {
   selectedElement.classList.add("press-effect");
 
   if (selectedElement.classList.contains("calculator-buttons__button")) {
-    pressEffect(e);
+    pressEffect(selectedElement,e);
 
     if (selectedElement.classList.contains("number-button")) {
       if (memoryLastNumber) {
@@ -99,7 +99,7 @@ function clearAllVlaue() {
   memoryCurrentNumber = 0;
 }
 function clearLastInputNumber() {
-  const screenValue = getScreenValue().toString();
+  const screenValue = `${getScreenValue()}`;
   setScreenValue(screenValue.substring(0, screenValue.length - 1));
 }
 
@@ -110,7 +110,7 @@ function checkPoint(elem) {
   }
 }
 
-function pressEffect(e) {
+function pressEffect(elem,event) {
   const lastClickBlock = calculatorButtons.querySelector(".click-effect");
 
   if (lastClickBlock) {
@@ -118,16 +118,16 @@ function pressEffect(e) {
   }
 
   const clickBlock = document.createElement("div");
-  const maxValue = Math.max(e.target.clientWidth, e.target.clientHeight);
-  const elemSizeOrClient = e.target.getBoundingClientRect();
+  const maxValue = Math.max(elem.clientWidth, elem.clientHeight);
+  const elemSizeOrClient = elem.getBoundingClientRect();
 
   clickBlock.classList.add("click-effect");
-  e.target.append(clickBlock);
-  clickBlock.style.width = clickBlock.style.height = maxValue + "px";
-  clickBlock.style.top = e.clientY - elemSizeOrClient.top - maxValue / 2 + "px";
+  elem.append(clickBlock);
+  clickBlock.style.width = clickBlock.style.height = `${maxValue}px`;
+  clickBlock.style.top = `${event.clientY - elemSizeOrClient.top - maxValue / 2}px`;
   clickBlock.style.left =
-    e.clientX - elemSizeOrClient.left - maxValue / 2 + "px";
-  clickEffect(e.target);
+  `${event.clientX - elemSizeOrClient.left - maxValue / 2}px`;
+  clickEffect(elem);
 }
 
 function clickEffect(button) {
